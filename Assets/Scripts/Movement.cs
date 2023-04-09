@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private float verticalThrust = 1000f;
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -34,9 +35,10 @@ public class Movement : MonoBehaviour
 
     private void ProcessThrust()
     {
+        var deltaTime = Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up);
+            rb.AddRelativeForce(Vector3.up * deltaTime * verticalThrust);
         }
     }
 }
