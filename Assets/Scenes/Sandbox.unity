@@ -531,5 +531,9 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8003589398898256604, guid: c2c37c06086735a408f909e5f123c552, type: 3}
+      propertyPath: rotationThrust
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2c37c06086735a408f909e5f123c552, type: 3}
