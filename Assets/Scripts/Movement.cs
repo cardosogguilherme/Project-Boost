@@ -36,7 +36,11 @@ public class Movement : MonoBehaviour
 
     private void ApplyRotation(float rotationThisFrame)
     {
+        rb.freezeRotation = true; // freezing roation so we can manually rotate
+
         transform.Rotate(Vector3.forward * rotationThisFrame);
+
+        rb.freezeRotation = false;
     }
 
     private void ProcessThrust()
