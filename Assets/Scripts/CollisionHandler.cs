@@ -4,7 +4,9 @@ public class CollisionHandler : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other)
     {
-        switch(other.gameObject.tag) 
+        Debug.Log(other.gameObject.tag);
+
+        switch (other.gameObject.tag) 
         {
             case "Friendly":
                 break;
