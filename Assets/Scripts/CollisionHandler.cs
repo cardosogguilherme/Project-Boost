@@ -1,8 +1,12 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    [SerializeField] private float levelDelay = 1f;
+
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log(other.gameObject.tag);
@@ -14,12 +18,36 @@ public class CollisionHandler : MonoBehaviour
             case "Fuel":
                 break;
             case "Finish":
-                LoadNextLevel();
+                StartCoroutine(StartSuccessSequence());
                 break;
             default:
-                ReloadLevel();
+                StartCoroutine(CrashSequence());
                 break;
         }
+    }
+
+    private IEnumerator StartSuccessSequence()
+    {
+        DisableControls();
+
+        Physics.autoSimulation = false;
+        yield return new WaitForSeconds(levelDelay); // Invoke("LoadNextLevel", levelDelay);
+
+        LoadNextLevel();
+    }
+
+    private IEnumerator CrashSequence()
+    {
+        DisableControls();
+
+        yield return new WaitForSeconds(levelDelay);
+
+        ReloadLevel();
+    }
+
+    private void DisableControls()
+    {
+        GetComponent<Movement>().enabled = false;
     }
 
     private void LoadNextLevel()
