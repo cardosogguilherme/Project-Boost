@@ -17,6 +17,8 @@ public class Oscilator : MonoBehaviour
 
     void Update()
     {
+        if (period <= Mathf.Epsilon) return;
+
         float cycles = Time.time / period;
         float rawSinWave = Mathf.Sin(tau * cycles); // going from -1 to 1
 
